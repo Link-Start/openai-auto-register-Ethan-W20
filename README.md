@@ -140,6 +140,34 @@ python main.py
   }
 }
 ```
+## 遇到问题
+
+**Q：`ModuleNotFoundError: No module named 'xxx'`，但 `pip install` 显示已安装**  
+A：多 Python 版本冲突，`pip` 装在了别的版本里。改用以下命令确保装到同一个 Python：
+```bash
+python -m pip install -r requirements.txt
+```
+
+**Q：Outlook 账号 IMAP 登录失败 / `LOGIN failed`**  
+A：微软已关闭基础密码认证，需使用 XOAUTH2。账号格式改为：
+```
+邮箱----密码----client_id----refresh_token
+```
+
+**Q：一直在等待验证码，没有收到**  
+A：检查以下几点：
+- Outlook 账号：确认 `refresh_token` 有效，或检查邮件是否进了垃圾箱
+- 域名邮箱：确认 IMAP 配置中的 `host`/`port`/`username`/`password` 正确，`use_tls` 按端口设置（993→true，143→false）
+- 尝试减少并发数，避免 OpenAI 触发限流
+
+**Q：注册成功但 Token 文件在哪里？**  
+A：在各版本目录下的 `tokens/` 文件夹，每个账号对应一个 `邮箱.json` 文件。
+
+**Q：浏览器版（browser-register-py）报 Playwright 错误**  
+A：需要单独安装浏览器内核：
+```bash
+python -m playwright install chromium
+```
 
 ---
 
