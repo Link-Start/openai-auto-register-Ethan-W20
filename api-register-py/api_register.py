@@ -1120,7 +1120,7 @@ class APIResponse:
 # ═══════════════════════════════════════════════════════
 def register_account(
     mail_account: MailAccount,
-    proxy: str = "http://127.0.0.1:1080",
+    proxy: str = "",
     used_codes: Optional[set] = None,
     mode: str = "register",
     cancel_fn: Optional[Callable] = None,
